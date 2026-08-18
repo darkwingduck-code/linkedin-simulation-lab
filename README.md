@@ -55,3 +55,10 @@ See [LINKEDIN_POST.md](LINKEDIN_POST.md) for a ready-to-edit launch post.
 - [Level 5 roadmap](docs/LEVEL5_ROADMAP.md): C++/CLion과 Python/PyCharm의 5단계 실전 커리큘럼
 - [Progress tracker](docs/PROGRESS_TRACKER.md): 완료 항목과 포트폴리오 증거 기록
 - [Project session log](docs/SESSION_LOG.md): 프로젝트 결정, 실행, 검증 및 정정 내역
+
+### Level 1 execution
+
+- [IDE setup and debugging guide](docs/IDE_SETUP_GUIDE.md)
+- [Level 1 technical notes](docs/level-1-notes.md)
+- [Conversation history](docs/CONVERSATION_HISTORY.md)
+- Run all Level 1 automated checks with .\scripts\run-level1.ps1.

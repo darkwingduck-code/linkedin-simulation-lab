@@ -1,14 +1,14 @@
-﻿# Level 5 Progress Tracker
+# Level 5 Progress Tracker
 
 완료 체크는 같은 PR 안의 commit, test report, benchmark, 글 또는 demo 링크를 근거로 한다.
 
 ## Level 1
 
-- [ ] CLion Debug/Release 빌드
+- [x] CLion Debug/Release 빌드
 - [ ] C++ debugger walkthrough
 - [ ] PyCharm CLI 및 테스트 실행
 - [ ] Python debugger walkthrough
-- [ ] 데이터 흐름 설명 문서
+- [x] 데이터 흐름 설명 문서
 - [x] Baseline CTest와 unittest 통과
 
 ## Level 2
@@ -62,3 +62,4 @@
 | 날짜 | 단계 | 증거 | 링크 |
 |---|---:|---|---|
 | 2026-08-18 | Baseline | C++/Python 테스트와 1,000회 통합 실행 | Commit `f6da7d3` |
+| 2026-08-18 | L1 | Debug/Release build, tests, data-flow notes | scripts/run-level1.ps1 |

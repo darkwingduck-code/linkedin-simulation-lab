@@ -52,3 +52,30 @@
 ### 다음 목표
 
 `LEVEL5_ROADMAP.md`와 `PROGRESS_TRACKER.md`를 따라 진행한다. 첫 작업은 Level 1 debugger 증거와 `docs/level-1-notes.md` 작성이다.
+
+## 2026-08-18 — Level 1 execution
+
+### 추가된 재현성 도구
+
+- CMakePresets.json에 Debug/Release configure, build, test preset 추가
+- scripts/run-level1.ps1에 CLion bundled CMake/Ninja/compiler 탐색 추가
+- Debug/Release를 독립 build directory에서 구성·빌드·테스트
+- Python unittest와 1,000-run 통합 분석 포함
+
+### 실행 결과
+
+- Debug build 및 CTest 통과
+- Release build 및 CTest 통과
+- Python unittest 통과
+- 1,000-run simulation과 summary 생성
+- 최종 marker: LEVEL1_VERIFICATION=PASS
+
+### 문서화
+
+- IDE_SETUP_GUIDE.md: 두 IDE의 설정, 실행, debugger, 문제 해결, 증거 제출 절차
+- level-1-notes.md: 데이터 흐름, 핵심 함수, 모델 가정, 언어 경계, 불변조건
+- CONVERSATION_HISTORY.md: 지금까지의 사용자 요청, 수행, 정정 이력
+
+### 의도적으로 미완료 처리한 사항
+
+IDE에서 사용자가 직접 breakpoint와 variable inspector를 조작하고 screenshot을 남기는 단계는 자동 build와 다르다. 실제 screenshot이 없으므로 CLion/PyCharm debugger walkthrough는 tracker에서 미완료 상태다.
