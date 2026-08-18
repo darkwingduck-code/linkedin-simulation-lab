@@ -33,9 +33,9 @@
 
 ## Level 4
 
-- [ ] Windows/Linux CI
+- [x] Windows/Linux CI
 - [x] Lint/type/static analysis
-- [ ] Sanitizer
+- [x] Sanitizer
 - [x] Packaged Python CLI
 - [x] Versioned C++ artifacts
 - [x] Property/invariant tests

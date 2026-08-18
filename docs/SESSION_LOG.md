@@ -170,4 +170,6 @@ When warning-as-error was expanded to the Release test target, the build reveale
 
 - Added explicit trust boundaries, resource exhaustion analysis, secret guidance, and vulnerability reporting.
 - Added an incident drill documenting Release assertions compiled out and native exit-code handling.
-- CI and sanitizer items remain unchecked in the tracker until GitHub reports successful runs.
+- GitHub Actions run 32109697342 passed on Windows and Linux, including sanitizer,
+  clang-tidy, Python packaging, end-to-end tests, and performance gates.
+- CI evidence: https://github.com/darkwingduck-code/linkedin-simulation-lab/actions/runs/32109697342
