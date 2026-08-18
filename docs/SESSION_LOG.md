@@ -184,3 +184,7 @@ When warning-as-error was expanded to the Release test target, the build reveale
 - Added Python sensitivity scenarios, p05 metrics, 95% mean confidence intervals, JSON/HTML evidence and CI smoke coverage.
 - Added provenance, limitations, recommendation, three self-reviews, retrospective article, demo plan, and a detailed LinkedIn manual integration guide.
 - Kept public v0.5.0 release and the user's LinkedIn profile update unchecked until those external actions actually complete.
+
+- GitHub Actions run 32112289682 passed all five jobs, including the Level 5 capstone smoke test on Windows and Linux.
+- Published annotated tag and public Release v0.5.0 with executable, wheel, sdist, JSON evidence, and HTML report.
+- Release: https://github.com/darkwingduck-code/linkedin-simulation-lab/releases/tag/v0.5.0

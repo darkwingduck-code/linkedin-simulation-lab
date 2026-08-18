@@ -53,7 +53,7 @@
 - [x] Limitations/trust-boundary 분석
 - [x] Engineering recommendation
 - [x] 리뷰 PR 또는 self-review 3회
-- [ ] Public release와 reproduction audit
+- [x] Public release와 reproduction audit
 - [ ] 기술 글, demo, LinkedIn 업데이트
 - [x] Final retrospective
 
@@ -68,3 +68,4 @@
 | 2026-08-18 | L4 local | lint, mypy, clang-tidy, packages, invariants, performance/security gates | v0.4.0 candidate |
 
 | 2026-08-18 | L5 local | deterministic 4-thread simulator, 2.39x measured speedup, sensitivity/CI report, self-review and LinkedIn guide | artifacts/capstone/capstone-results.json |
+| 2026-08-18 | L5 release | Windows/Linux/sanitizer/static-analysis CI and public v0.5.0 assets | https://github.com/darkwingduck-code/linkedin-simulation-lab/releases/tag/v0.5.0 |
