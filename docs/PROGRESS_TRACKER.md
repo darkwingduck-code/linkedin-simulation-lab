@@ -23,13 +23,13 @@
 
 ## Level 3
 
-- [ ] 도메인 중심 모듈 경계
-- [ ] Versioned JSON output
-- [ ] Multi-scenario comparison
-- [ ] HTML report와 charts
-- [ ] End-to-end process test
-- [ ] Benchmark baseline
-- [ ] Architecture Decision Records
+- [x] 도메인 중심 모듈 경계
+- [x] Versioned JSON output
+- [x] Multi-scenario comparison
+- [x] HTML report와 charts
+- [x] End-to-end process test
+- [x] Benchmark baseline
+- [x] Architecture Decision Records
 
 ## Level 4
 
@@ -64,3 +64,4 @@
 | 2026-08-18 | Baseline | C++/Python 테스트와 1,000회 통합 실행 | Commit f6da7d3 |
 | 2026-08-18 | L1 | Debug/Release build, tests, data-flow notes | scripts/run-level1.ps1 |
 | 2026-08-18 | L2 | Named CLI, validation, 12 automated tests, warning/type gates, data contract | Level 2 delivery commit |
+| 2026-08-18 | L3 | JSON contract, scenario comparison, HTML/SVG, E2E, benchmark, ADR | Level 3 delivery commit |

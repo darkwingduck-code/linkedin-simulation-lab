@@ -114,3 +114,33 @@ IDE에서 사용자가 직접 breakpoint와 variable inspector를 조작하고 s
 ### Verification hardening discovered during review
 
 When warning-as-error was expanded to the Release test target, the build revealed that standard assert checks disappear under NDEBUG. The test executable was rewritten to use explicit runtime checks that remain active in Release. Both PowerShell workflows now inspect every native exit code and stop immediately on configure, build, test, simulation, type-check, or analytics failure.
+
+## 2026-08-18 — Level 3 implementation
+
+### Architecture
+
+- Split C++ simulation from CSV/JSON serialization.
+- Added JSON schema version 1.0 with configuration provenance and complete results.
+- Documented the file-boundary decision and rejected pybind11, API, and queue alternatives in ADR-001.
+
+### Python system
+
+- Added sorted multi-scenario comparison.
+- Added versioned comparison JSON.
+- Added self-contained HTML with a metrics table and two inline SVG bar charts.
+- Added a CLI for scenario comparison.
+- Added a cross-process end-to-end test that launches C++, validates JSON, reads CSV, and renders HTML.
+
+### Verification
+
+- Debug CTest 4/4 and Release CTest 4/4.
+- Python unittest 11/11 including end-to-end.
+- strict mypy: 6 package source files, no issues.
+- Total automated cases: 15.
+- Real baseline and stressed scenario pipeline generated successfully.
+
+### Benchmark
+
+- C++ 100,000 runs: 0.1717865 seconds, 582,117.92 runs/second.
+- Python 100,000-row analysis mean: 0.2089791 seconds over 20 repeats.
+- Full environment and interpretation recorded in BENCHMARK_BASELINE.md.

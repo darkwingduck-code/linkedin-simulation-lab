@@ -1,9 +1,6 @@
-#include "reliability.hpp"
+﻿#include "reliability.hpp"
 
 #include <algorithm>
-#include <filesystem>
-#include <fstream>
-#include <iomanip>
 #include <random>
 #include <stdexcept>
 
@@ -38,17 +35,3 @@ std::vector<SimulationResult> simulate(const SimulationConfig& config) {
     }
     return results;
 }
-
-void write_csv(const std::vector<SimulationResult>& results, const std::string& path) {
-    const std::filesystem::path output(path);
-    if (output.has_parent_path()) std::filesystem::create_directories(output.parent_path());
-    std::ofstream stream(output);
-    if (!stream) throw std::runtime_error("could not open output file: " + path);
-    stream << "run_id,uptime_hours,downtime_hours,failures,availability\n";
-    stream << std::fixed << std::setprecision(6);
-    for (const auto& row : results) {
-        stream << row.run_id << ',' << row.uptime_hours << ',' << row.downtime_hours << ','
-               << row.failures << ',' << row.availability << '\n';
-    }
-}
-

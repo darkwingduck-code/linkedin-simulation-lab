@@ -94,3 +94,11 @@ Debug와 Release에서 CTest 4개씩 통과했고 Python unittest 8개와 mypy s
 ### Level 2 review correction
 
 Pre-push verification found that C++ standard assert is compiled out in Release and that PowerShell ErrorActionPreference alone does not stop on every native executable failure. Tests were changed to explicit runtime checks, and both workflow scripts now validate LASTEXITCODE after each native command. Fresh Debug and Release runs passed afterward.
+
+## 11. Level 3 구현
+
+사용자가 이어서 진행을 요청했다. C++ simulation과 serialization을 분리하고 schema version 1.0 JSON을 추가했다. Python에는 다중 scenario 비교, versioned comparison JSON, table과 inline SVG charts를 포함한 HTML report를 구현했다.
+
+end-to-end test는 C++ executable을 두 번 실행해 baseline/stressed artifacts를 만들고 JSON version과 result 수를 검증한 뒤 Python으로 HTML까지 생성한다. Debug/Release CTest 4개, Python tests 11개, strict mypy source 6개가 통과했다.
+
+실제 benchmark는 Release 100,000 runs에서 약 582,118 runs/second, Python 100,000-row summary 평균 약 0.209초였다. 수치는 같은 머신과 조건에서만 비교해야 한다는 제한도 함께 기록했다.

@@ -11,6 +11,7 @@ namespace {
 void print_usage(const char* program) {
     std::cout << "Usage: " << program << " [options]\n"
               << "  --output PATH          CSV output path\n"
+              << "  --json-output PATH     Optional versioned JSON output path\n"
               << "  --runs N               Number of Monte Carlo runs (> 0)\n"
               << "  --seed N               Random seed (0 to 4294967295)\n"
               << "  --hours N              Observation window in hours (> 0)\n"
@@ -43,7 +44,7 @@ double parse_positive(const std::string& value, const std::string& option) {
     return number;
 }
 
-SimulationConfig parse_arguments(int argc, char* argv[], std::string& output) {
+SimulationConfig parse_arguments(int argc, char* argv[], std::string& output, std::string& json_output) {
     SimulationConfig config;
     for (int index = 1; index < argc; ++index) {
         const std::string option = argv[index];
@@ -54,6 +55,9 @@ SimulationConfig parse_arguments(int argc, char* argv[], std::string& output) {
         if (option == "--output") {
             output = require_value(index, argc, argv, option);
             if (output.empty()) throw std::invalid_argument("--output must not be empty");
+        } else if (option == "--json-output") {
+            json_output = require_value(index, argc, argv, option);
+            if (json_output.empty()) throw std::invalid_argument("--json-output must not be empty");
         } else if (option == "--runs") {
             const auto runs = parse_unsigned(require_value(index, argc, argv, option), option);
             if (runs == 0 || runs > std::numeric_limits<std::size_t>::max()) {
@@ -83,9 +87,11 @@ SimulationConfig parse_arguments(int argc, char* argv[], std::string& output) {
 int main(int argc, char* argv[]) {
     try {
         std::string output = "artifacts/simulation.csv";
-        const SimulationConfig config = parse_arguments(argc, argv, output);
+        std::string json_output;
+        const SimulationConfig config = parse_arguments(argc, argv, output, json_output);
         const auto results = simulate(config);
         write_csv(results, output);
+        if (!json_output.empty()) write_json(config, results, json_output);
         std::cout << "Generated " << results.size() << " runs at " << output << '\n';
         return EXIT_SUCCESS;
     } catch (const std::exception& error) {

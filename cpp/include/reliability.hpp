@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include <cstddef>
 #include <cstdint>
@@ -23,4 +23,8 @@ struct SimulationResult {
 
 std::vector<SimulationResult> simulate(const SimulationConfig& config);
 void write_csv(const std::vector<SimulationResult>& results, const std::string& path);
-
+void write_json(
+    const SimulationConfig& config,
+    const std::vector<SimulationResult>& results,
+    const std::string& path
+);

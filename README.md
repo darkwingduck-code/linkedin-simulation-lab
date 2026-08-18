@@ -28,7 +28,7 @@ No third-party runtime dependencies are required. You need CMake, a C++17 compil
 Open the repository root as a CMake project. Build `reliability_simulator` or run `reliability_tests`. The executable accepts:
 
 ```text
-reliability_simulator [output.csv] [runs] [seed]
+reliability_simulator --output PATH [--json-output PATH] [--runs N] [--seed N] [--hours N] [--failure-rate N] [--repair-rate N]
 ```
 
 ## PyCharm
@@ -68,3 +68,12 @@ See [LINKEDIN_POST.md](LINKEDIN_POST.md) for a ready-to-edit launch post.
 - [Level 2 implementation guide](docs/LEVEL2_GUIDE.md)
 - [CSV data contract](docs/data-contract.md)
 - Install dev tools: .\.venv\Scripts\python.exe -m pip install -e ".[dev]"
+
+### Level 3
+
+- [Level 3 guide](docs/LEVEL3_GUIDE.md)
+- [JSON contract](docs/json-contract.md)
+- [ADR-001: file contracts](docs/adr/001-file-contract.md)
+- [Benchmark baseline](docs/BENCHMARK_BASELINE.md)
+- Run scenarios with .\scripts\run-scenarios.ps1.
+- Run performance baseline with .\scripts\benchmark.ps1.

@@ -31,10 +31,11 @@ $executable = Join-Path $buildDirectory 'Release\reliability_simulator.exe'
 if (-not (Test-Path $executable)) {
     $executable = Join-Path $buildDirectory 'reliability_simulator.exe'
 }
-& $executable --output (Join-Path $artifactDirectory 'simulation.csv') --runs 1000 --seed 42
+& $executable --output (Join-Path $artifactDirectory 'simulation.csv') --json-output (Join-Path $artifactDirectory 'simulation.json') --runs 1000 --seed 42
 if ($LASTEXITCODE -ne 0) { throw 'Simulation failed' }
 
 $env:PYTHONPATH = Join-Path $projectRoot 'python'
+$env:RELIABILITY_SIMULATOR = $executable
 python -m unittest discover -s (Join-Path $projectRoot 'python\tests') -v
 if ($LASTEXITCODE -ne 0) { throw 'Python tests failed' }
 $mypy = Join-Path $projectRoot '.venv\Scripts\mypy.exe'
