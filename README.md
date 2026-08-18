@@ -49,3 +49,9 @@ python -m unittest discover -s python/tests -v
 - One-command end-to-end workflow suitable for CI
 
 See [LINKEDIN_POST.md](LINKEDIN_POST.md) for a ready-to-edit launch post.
+
+## Learning path
+
+- [Level 5 roadmap](docs/LEVEL5_ROADMAP.md): C++/CLion과 Python/PyCharm의 5단계 실전 커리큘럼
+- [Progress tracker](docs/PROGRESS_TRACKER.md): 완료 항목과 포트폴리오 증거 기록
+- [Project session log](docs/SESSION_LOG.md): 프로젝트 결정, 실행, 검증 및 정정 내역
