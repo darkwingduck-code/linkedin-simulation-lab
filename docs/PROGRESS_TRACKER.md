@@ -34,13 +34,13 @@
 ## Level 4
 
 - [ ] Windows/Linux CI
-- [ ] Lint/type/static analysis
+- [x] Lint/type/static analysis
 - [ ] Sanitizer
-- [ ] Packaged Python CLI
-- [ ] Versioned C++ artifacts
-- [ ] Property/invariant tests
-- [ ] Performance regression gate
-- [ ] Security/failure-mode 문서
+- [x] Packaged Python CLI
+- [x] Versioned C++ artifacts
+- [x] Property/invariant tests
+- [x] Performance regression gate
+- [x] Security/failure-mode 문서
 - [ ] Tagged release와 incident drill
 
 ## Level 5
@@ -65,3 +65,4 @@
 | 2026-08-18 | L1 | Debug/Release build, tests, data-flow notes | scripts/run-level1.ps1 |
 | 2026-08-18 | L2 | Named CLI, validation, 12 automated tests, warning/type gates, data contract | Level 2 delivery commit |
 | 2026-08-18 | L3 | JSON contract, scenario comparison, HTML/SVG, E2E, benchmark, ADR | Level 3 delivery commit |
+| 2026-08-18 | L4 local | lint, mypy, clang-tidy, packages, invariants, performance/security gates | v0.4.0 candidate |

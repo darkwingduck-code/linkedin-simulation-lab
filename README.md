@@ -1,5 +1,7 @@
 # Reliability Simulation Lab
 
+[![CI](https://github.com/darkwingduck-code/linkedin-simulation-lab/actions/workflows/ci.yml/badge.svg)](https://github.com/darkwingduck-code/linkedin-simulation-lab/actions/workflows/ci.yml)
+
 A portfolio-ready toy project connecting a high-performance C++17 Monte Carlo engine with a lightweight Python analytics pipeline.
 
 ## Architecture
@@ -77,3 +79,11 @@ See [LINKEDIN_POST.md](LINKEDIN_POST.md) for a ready-to-edit launch post.
 - [Benchmark baseline](docs/BENCHMARK_BASELINE.md)
 - Run scenarios with .\scripts\run-scenarios.ps1.
 - Run performance baseline with .\scripts\benchmark.ps1.
+
+### Level 4
+
+- [Level 4 guide](docs/LEVEL4_GUIDE.md)
+- [Security and failure modes](docs/SECURITY.md)
+- [Incident drill](docs/INCIDENT_DRILL.md)
+- [ADR-002 static analysis policy](docs/adr/002-static-analysis-policy.md)
+- Package with .\scripts\package.ps1.

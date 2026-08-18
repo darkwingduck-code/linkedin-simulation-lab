@@ -19,10 +19,25 @@ class AnalyticsTests(unittest.TestCase):
 
     def test_summary_includes_level_2_statistics(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
-            path = self.write_rows(directory, [
-                {"run_id": 1, "uptime_hours": 700, "downtime_hours": 20, "failures": 2, "availability": 0.97},
-                {"run_id": 2, "uptime_hours": 710, "downtime_hours": 10, "failures": 1, "availability": 0.99},
-            ])
+            path = self.write_rows(
+                directory,
+                [
+                    {
+                        "run_id": 1,
+                        "uptime_hours": 700,
+                        "downtime_hours": 20,
+                        "failures": 2,
+                        "availability": 0.97,
+                    },
+                    {
+                        "run_id": 2,
+                        "uptime_hours": 710,
+                        "downtime_hours": 10,
+                        "failures": 1,
+                        "availability": 0.99,
+                    },
+                ],
+            )
             result = summarize(path)
             self.assertEqual(result["runs"], 2)
             self.assertAlmostEqual(result["mean_availability"], 0.98)
@@ -46,40 +61,86 @@ class AnalyticsTests(unittest.TestCase):
 
     def test_malformed_number_is_rejected(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
-            path = self.write_rows(directory, [
-                {"run_id": 1, "uptime_hours": 700, "downtime_hours": 20, "failures": "many", "availability": 0.97},
-            ])
+            path = self.write_rows(
+                directory,
+                [
+                    {
+                        "run_id": 1,
+                        "uptime_hours": 700,
+                        "downtime_hours": 20,
+                        "failures": "many",
+                        "availability": 0.97,
+                    },
+                ],
+            )
             with self.assertRaisesRegex(ValueError, "row 2"):
                 summarize(path)
 
     def test_availability_range_is_validated(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
-            path = self.write_rows(directory, [
-                {"run_id": 1, "uptime_hours": 700, "downtime_hours": 20, "failures": 1, "availability": 1.2},
-            ])
+            path = self.write_rows(
+                directory,
+                [
+                    {
+                        "run_id": 1,
+                        "uptime_hours": 700,
+                        "downtime_hours": 20,
+                        "failures": 1,
+                        "availability": 1.2,
+                    },
+                ],
+            )
             with self.assertRaisesRegex(ValueError, "out of range"):
                 summarize(path)
 
     def test_non_finite_metric_is_rejected(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
-            path = self.write_rows(directory, [
-                {"run_id": 1, "uptime_hours": "nan", "downtime_hours": 1, "failures": 1, "availability": 0.97},
-            ])
+            path = self.write_rows(
+                directory,
+                [
+                    {
+                        "run_id": 1,
+                        "uptime_hours": "nan",
+                        "downtime_hours": 1,
+                        "failures": 1,
+                        "availability": 0.97,
+                    },
+                ],
+            )
             with self.assertRaisesRegex(ValueError, "non-finite"):
                 summarize(path)
 
     def test_non_positive_run_id_is_rejected(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
-            path = self.write_rows(directory, [
-                {"run_id": 0, "uptime_hours": 700, "downtime_hours": 20, "failures": 1, "availability": 0.97},
-            ])
+            path = self.write_rows(
+                directory,
+                [
+                    {
+                        "run_id": 0,
+                        "uptime_hours": 700,
+                        "downtime_hours": 20,
+                        "failures": 1,
+                        "availability": 0.97,
+                    },
+                ],
+            )
             with self.assertRaisesRegex(ValueError, "run_id"):
                 summarize(path)
+
     def test_negative_metrics_are_rejected(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
-            path = self.write_rows(directory, [
-                {"run_id": 1, "uptime_hours": 700, "downtime_hours": -1, "failures": 1, "availability": 0.97},
-            ])
+            path = self.write_rows(
+                directory,
+                [
+                    {
+                        "run_id": 1,
+                        "uptime_hours": 700,
+                        "downtime_hours": -1,
+                        "failures": 1,
+                        "availability": 0.97,
+                    },
+                ],
+            )
             with self.assertRaisesRegex(ValueError, "negative"):
                 summarize(path)
 

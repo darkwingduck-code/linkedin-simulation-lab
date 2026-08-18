@@ -19,6 +19,26 @@ void require_invalid(Callable callable, const std::string& message) {
     }
     throw std::runtime_error(message);
 }
+
+void verify_invariants(const SimulationConfig& config) {
+    const auto results = simulate(config);
+    require(results.size() == config.runs, "result count differs from requested runs");
+    for (const auto& result : results) {
+        require(result.run_id >= 1 && result.run_id <= config.runs, "run_id outside expected range");
+        require(std::isfinite(result.uptime_hours), "non-finite uptime");
+        require(std::isfinite(result.downtime_hours), "non-finite downtime");
+        require(result.uptime_hours >= 0.0, "negative uptime");
+        require(result.downtime_hours >= 0.0, "negative downtime");
+        require(
+            std::abs(result.uptime_hours + result.downtime_hours - config.hours) < 1e-9,
+            "uptime and downtime do not equal observation hours"
+        );
+        require(
+            result.availability >= 0.0 && result.availability <= 1.0,
+            "availability is outside zero through one"
+        );
+    }
+}
 }
 
 int main() {
@@ -28,19 +48,17 @@ int main() {
         config.seed = 7;
         const auto first = simulate(config);
         const auto second = simulate(config);
-        require(first.size() == config.runs, "result count differs from requested runs");
         require(first.front().availability == second.front().availability, "fixed seed is not deterministic");
-        for (const auto& result : first) {
-            require(result.uptime_hours >= 0.0, "negative uptime");
-            require(result.downtime_hours >= 0.0, "negative downtime");
-            require(
-                std::abs(result.uptime_hours + result.downtime_hours - config.hours) < 1e-9,
-                "uptime and downtime do not equal observation hours"
-            );
-            require(
-                result.availability >= 0.0 && result.availability <= 1.0,
-                "availability is outside zero through one"
-            );
+        verify_invariants(config);
+
+        for (std::uint32_t seed = 0; seed < 50; ++seed) {
+            SimulationConfig generated;
+            generated.runs = 20 + seed % 7;
+            generated.seed = seed;
+            generated.hours = 24.0 + static_cast<double>(seed);
+            generated.failure_rate_per_hour = 0.0005 + static_cast<double>(seed) * 0.0001;
+            generated.repair_rate_per_hour = 0.02 + static_cast<double>(seed) * 0.001;
+            verify_invariants(generated);
         }
 
         auto invalid = config;
@@ -56,7 +74,7 @@ int main() {
         invalid.repair_rate_per_hour = -1.0;
         require_invalid([&invalid] { simulate(invalid); }, "negative repair rate was accepted");
 
-        std::cout << "All reliability model tests passed\n";
+        std::cout << "All reliability model tests passed, including 50 generated configurations\n";
         return 0;
     } catch (const std::exception& error) {
         std::cerr << "Reliability model test failed: " << error.what() << '\n';

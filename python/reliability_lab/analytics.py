@@ -7,6 +7,7 @@ import statistics
 from pathlib import Path
 from typing import TypedDict
 
+
 class Summary(TypedDict):
     runs: int
     mean_availability: float
@@ -16,6 +17,8 @@ class Summary(TypedDict):
     p95_downtime_hours: float
     mean_failures: float
     max_failures: int
+
+
 _REQUIRED_FIELDS = {
     "run_id",
     "uptime_hours",

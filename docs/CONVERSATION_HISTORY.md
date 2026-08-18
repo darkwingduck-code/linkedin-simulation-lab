@@ -102,3 +102,9 @@ Pre-push verification found that C++ standard assert is compiled out in Release 
 end-to-end test는 C++ executable을 두 번 실행해 baseline/stressed artifacts를 만들고 JSON version과 result 수를 검증한 뒤 Python으로 HTML까지 생성한다. Debug/Release CTest 4개, Python tests 11개, strict mypy source 6개가 통과했다.
 
 실제 benchmark는 Release 100,000 runs에서 약 582,118 runs/second, Python 100,000-row summary 평균 약 0.209초였다. 수치는 같은 머신과 조건에서만 비교해야 한다는 제한도 함께 기록했다.
+
+## 12. Level 4 구현
+
+사용자가 계속 진행을 요청했다. Windows/Linux GitHub Actions, ruff, strict mypy, clang-tidy, Linux sanitizers, Python console package, C++ install artifact, randomized invariants, performance gate, security review, incident drill과 v0.4.0 metadata를 구현했다.
+
+로컬에서 lint/type/static analysis, Debug/Release tests, 50,000-run performance gate, wheel/source package와 C++ release binary 생성을 검증했다. wheel에 tests가 실수로 포함되는 문제를 package discovery에서 제외해 수정했다. CI와 sanitizer 성공 여부는 GitHub 실행 결과가 나오기 전에는 완료로 표시하지 않았다.

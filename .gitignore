@@ -10,3 +10,5 @@ artifacts/*.json
 artifacts/*.html
 !artifacts/.gitkeep
 *.egg-info/
+dist/
+release/

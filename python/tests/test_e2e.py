@@ -1,4 +1,4 @@
-﻿import json
+import json
 import os
 import subprocess
 import tempfile
@@ -23,11 +23,16 @@ class EndToEndTests(unittest.TestCase):
                 subprocess.run(
                     [
                         executable,
-                        "--output", str(csv_path),
-                        "--json-output", str(json_path),
-                        "--runs", "100",
-                        "--seed", "42",
-                        "--failure-rate", failure_rate,
+                        "--output",
+                        str(csv_path),
+                        "--json-output",
+                        str(json_path),
+                        "--runs",
+                        "100",
+                        "--seed",
+                        "42",
+                        "--failure-rate",
+                        failure_rate,
                     ],
                     check=True,
                     capture_output=True,

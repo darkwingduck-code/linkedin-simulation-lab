@@ -144,3 +144,30 @@ When warning-as-error was expanded to the Release test target, the build reveale
 - C++ 100,000 runs: 0.1717865 seconds, 582,117.92 runs/second.
 - Python 100,000-row analysis mean: 0.2089791 seconds over 20 repeats.
 - Full environment and interpretation recorded in BENCHMARK_BASELINE.md.
+
+## 2026-08-18 — Level 4 implementation
+
+### Delivery automation
+
+- Added Windows and Linux GitHub Actions with read-only repository permissions.
+- Added Release C++ build/test, Python lint/type/test, E2E, performance gate, packaging, and artifacts.
+- Added Linux AddressSanitizer/UndefinedBehaviorSanitizer and clang-tidy jobs.
+- Added official checkout v6, setup-python v6, and upload-artifact v7 actions.
+- Added VERSION/CMake/Python version consistency check.
+
+### Local quality evidence
+
+- ruff format and lint pass.
+- strict mypy passes for 7 package source files.
+- clang-tidy bugprone/performance/portability build passes with two documented targeted exclusions.
+- C++ property checks cover 50 generated configurations.
+- Python property checks cover 200 deterministic generated rows and HTML escaping.
+- Local performance gate passes: 50,000 runs in 0.098625 s; analysis in 0.105198 s.
+- Python wheel, source distribution, and C++ installed binary produced successfully.
+- Installed console commands and wheel contents verified.
+
+### Reliability and security
+
+- Added explicit trust boundaries, resource exhaustion analysis, secret guidance, and vulnerability reporting.
+- Added an incident drill documenting Release assertions compiled out and native exit-code handling.
+- CI and sanitizer items remain unchecked in the tracker until GitHub reports successful runs.

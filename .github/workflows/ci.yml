@@ -1,0 +1,93 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+    tags: ["v*"]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  cross-platform:
+    name: ${{ matrix.name }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            name: Linux
+            executable: build/reliability_simulator
+          - os: windows-latest
+            name: Windows
+            executable: build/reliability_simulator.exe
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+          cache: pip
+      - name: Install Python development package
+        run: python -m pip install -e ".[dev]"
+      - name: Check release version consistency
+        run: python scripts/check_version.py
+      - name: Lint Python
+        run: ruff check python
+      - name: Type-check Python
+        run: mypy
+      - name: Configure C++
+        run: cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
+      - name: Build C++
+        run: cmake --build build
+      - name: Test C++
+        run: ctest --test-dir build --output-on-failure
+      - name: Test Python and end-to-end
+        env:
+          RELIABILITY_SIMULATOR: ${{ matrix.executable }}
+        run: python -m unittest discover -s python/tests -v
+      - name: Performance regression gate
+        run: python -m reliability_lab.performance_gate --simulator ${{ matrix.executable }}
+      - name: Stage C++ release artifact
+        run: cmake --install build --prefix release
+      - uses: actions/upload-artifact@v7
+        with:
+          name: reliability-simulator-${{ matrix.name }}
+          path: release/
+
+  sanitizer:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Configure sanitizers
+        run: cmake -S . -B build-sanitized -G Ninja -DCMAKE_BUILD_TYPE=Debug -DENABLE_SANITIZERS=ON
+      - name: Build sanitizers
+        run: cmake --build build-sanitized
+      - name: Test sanitizers
+        run: ctest --test-dir build-sanitized --output-on-failure
+
+  static-analysis:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Configure clang-tidy
+        run: cmake -S . -B build-tidy -G Ninja -DCMAKE_BUILD_TYPE=Debug -DENABLE_CLANG_TIDY=ON
+      - name: Run clang-tidy during build
+        run: cmake --build build-tidy
+
+  python-package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+          cache: pip
+      - run: python -m pip install -e ".[dev]"
+      - run: python -m build
+      - uses: actions/upload-artifact@v7
+        with:
+          name: reliability-lab-python
+          path: dist/

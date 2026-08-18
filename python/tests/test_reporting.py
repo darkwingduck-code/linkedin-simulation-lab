@@ -1,10 +1,9 @@
-﻿import json
+import json
 import tempfile
 import unittest
 from pathlib import Path
 
 from reliability_lab.reporting import compare_scenarios, render_html, write_comparison_json
-
 
 CSV_HEADER = "run_id,uptime_hours,downtime_hours,failures,availability\n"
 

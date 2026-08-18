@@ -1,4 +1,5 @@
-﻿#pragma once
+#ifndef RELIABILITY_HPP
+#define RELIABILITY_HPP
 
 #include <cstddef>
 #include <cstdint>
@@ -28,3 +29,5 @@ void write_json(
     const std::vector<SimulationResult>& results,
     const std::string& path
 );
+
+#endif  // RELIABILITY_HPP

@@ -1,4 +1,4 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 import html
 import json
@@ -16,10 +16,7 @@ class ScenarioSummary(TypedDict):
 def compare_scenarios(scenarios: dict[str, str | Path]) -> list[ScenarioSummary]:
     if len(scenarios) < 2:
         raise ValueError("at least two scenarios are required")
-    return [
-        {"name": name, "metrics": summarize(path)}
-        for name, path in sorted(scenarios.items())
-    ]
+    return [{"name": name, "metrics": summarize(path)} for name, path in sorted(scenarios.items())]
 
 
 def write_comparison_json(rows: list[ScenarioSummary], output_path: str | Path) -> None:
@@ -42,7 +39,7 @@ def _bar_chart(
     values = [float(row["metrics"][metric]) for row in rows]  # type: ignore[literal-required]
     maximum = max(values) or 1.0
     items: list[str] = []
-    for index, (row, value) in enumerate(zip(rows, values)):
+    for index, (row, value) in enumerate(zip(rows, values, strict=True)):
         y = 40 + index * (bar_height + 12)
         bar_width = value / maximum * chart_width
         display = f"{value:.3%}" if percentage else f"{value:.3f}"
@@ -63,12 +60,12 @@ def _bar_chart(
 def render_html(rows: list[ScenarioSummary], output_path: str | Path) -> None:
     table_rows = "".join(
         "<tr>"
-        f'<td>{html.escape(row["name"])}</td>'
-        f'<td>{row["metrics"]["runs"]}</td>'
-        f'<td>{row["metrics"]["mean_availability"]:.3%}</td>'
-        f'<td>{row["metrics"]["median_availability"]:.3%}</td>'
-        f'<td>{row["metrics"]["availability_stddev"]:.5f}</td>'
-        f'<td>{row["metrics"]["p95_downtime_hours"]:.3f}</td>'
+        f"<td>{html.escape(row['name'])}</td>"
+        f"<td>{row['metrics']['runs']}</td>"
+        f"<td>{row['metrics']['mean_availability']:.3%}</td>"
+        f"<td>{row['metrics']['median_availability']:.3%}</td>"
+        f"<td>{row['metrics']['availability_stddev']:.5f}</td>"
+        f"<td>{row['metrics']['p95_downtime_hours']:.3f}</td>"
         "</tr>"
         for row in rows
     )

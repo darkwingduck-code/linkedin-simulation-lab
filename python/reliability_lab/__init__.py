@@ -3,4 +3,3 @@
 from .analytics import summarize
 
 __all__ = ["summarize"]
-
