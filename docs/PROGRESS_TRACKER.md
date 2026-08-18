@@ -13,13 +13,13 @@
 
 ## Level 2
 
-- [ ] Named C++ CLI options
-- [ ] 입력 검증과 오류 테스트
-- [ ] 확장된 Python 통계
-- [ ] 집중 테스트 10개 이상
-- [ ] C++ warning-clean build
-- [ ] Python type-checking gate
-- [ ] 데이터 계약 문서
+- [x] Named C++ CLI options
+- [x] 입력 검증과 오류 테스트
+- [x] 확장된 Python 통계
+- [x] 집중 테스트 10개 이상
+- [x] C++ warning-clean build
+- [x] Python type-checking gate
+- [x] 데이터 계약 문서
 
 ## Level 3
 
@@ -61,5 +61,6 @@
 
 | 날짜 | 단계 | 증거 | 링크 |
 |---|---:|---|---|
-| 2026-08-18 | Baseline | C++/Python 테스트와 1,000회 통합 실행 | Commit `f6da7d3` |
+| 2026-08-18 | Baseline | C++/Python 테스트와 1,000회 통합 실행 | Commit f6da7d3 |
 | 2026-08-18 | L1 | Debug/Release build, tests, data-flow notes | scripts/run-level1.ps1 |
+| 2026-08-18 | L2 | Named CLI, validation, 12 automated tests, warning/type gates, data contract | Level 2 delivery commit |

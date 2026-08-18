@@ -1,4 +1,4 @@
-﻿# Project Session Log
+# Project Session Log
 
 이 문서는 계정 자격 증명이나 대화 원문 전체를 저장하지 않고, 프로젝트 구성 과정에서 나온 유용한 의사결정과 검증 결과를 보존한다.
 
@@ -79,3 +79,38 @@
 ### 의도적으로 미완료 처리한 사항
 
 IDE에서 사용자가 직접 breakpoint와 variable inspector를 조작하고 screenshot을 남기는 단계는 자동 build와 다르다. 실제 screenshot이 없으므로 CLion/PyCharm debugger walkthrough는 tracker에서 미완료 상태다.
+
+## 2026-08-18 — Level 2 implementation
+
+### C++ changes
+
+- Positional arguments replaced with named options for output, runs, seed, hours, failure rate, and repair rate.
+- Rejects missing values, unknown options, negative integers, trailing characters, non-finite doubles, non-positive rates/hours, and seed/runs range violations.
+- GNU/Clang warning flags enabled and warnings promoted to errors.
+- CTest now covers model invariants, named CLI success, zero-run rejection, and unknown-option rejection.
+
+### Python changes
+
+- Added median availability, population standard deviation, and p95 downtime.
+- Added required-header, empty-file, numeric parsing, range, and negative-value validation.
+- Replaced a broad dictionary alias with a TypedDict summary contract.
+- Added strict mypy configuration and verified all package sources.
+
+### Verification
+
+- Debug CTest: 4/4 pass.
+- Release CTest: 4/4 pass.
+- Python unittest: 8/8 pass.
+- Strict mypy: 3 source files, no issues.
+- Warning-as-error C++ builds pass.
+- Integrated 1,000-run analysis remains reproducible at 98.233% mean availability.
+
+### Documentation
+
+- docs/LEVEL2_GUIDE.md
+- docs/data-contract.md
+- progress and conversation logs updated
+
+### Verification hardening discovered during review
+
+When warning-as-error was expanded to the Release test target, the build revealed that standard assert checks disappear under NDEBUG. The test executable was rewritten to use explicit runtime checks that remain active in Release. Both PowerShell workflows now inspect every native exit code and stop immediately on configure, build, test, simulation, type-check, or analytics failure.

@@ -62,3 +62,9 @@ See [LINKEDIN_POST.md](LINKEDIN_POST.md) for a ready-to-edit launch post.
 - [Level 1 technical notes](docs/level-1-notes.md)
 - [Conversation history](docs/CONVERSATION_HISTORY.md)
 - Run all Level 1 automated checks with .\scripts\run-level1.ps1.
+
+### Level 2
+
+- [Level 2 implementation guide](docs/LEVEL2_GUIDE.md)
+- [CSV data contract](docs/data-contract.md)
+- Install dev tools: .\.venv\Scripts\python.exe -m pip install -e ".[dev]"

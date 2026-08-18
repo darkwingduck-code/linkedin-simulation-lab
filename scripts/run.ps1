@@ -1,4 +1,4 @@
-﻿$ErrorActionPreference = 'Stop'
+$ErrorActionPreference = 'Stop'
 $projectRoot = Split-Path -Parent $PSScriptRoot
 $buildDirectory = Join-Path $projectRoot 'build'
 $artifactDirectory = Join-Path $projectRoot 'artifacts'
@@ -21,17 +21,27 @@ if ($cmakeCommand) {
 }
 
 & $cmake @configureArgs
+if ($LASTEXITCODE -ne 0) { throw 'CMake configure failed' }
 & $cmake --build $buildDirectory --config Release
+if ($LASTEXITCODE -ne 0) { throw 'C++ build failed' }
 & $ctest --test-dir $buildDirectory -C Release --output-on-failure
+if ($LASTEXITCODE -ne 0) { throw 'C++ tests failed' }
 
 $executable = Join-Path $buildDirectory 'Release\reliability_simulator.exe'
 if (-not (Test-Path $executable)) {
     $executable = Join-Path $buildDirectory 'reliability_simulator.exe'
 }
-& $executable (Join-Path $artifactDirectory 'simulation.csv') 1000 42
+& $executable --output (Join-Path $artifactDirectory 'simulation.csv') --runs 1000 --seed 42
+if ($LASTEXITCODE -ne 0) { throw 'Simulation failed' }
 
 $env:PYTHONPATH = Join-Path $projectRoot 'python'
 python -m unittest discover -s (Join-Path $projectRoot 'python\tests') -v
+if ($LASTEXITCODE -ne 0) { throw 'Python tests failed' }
+$mypy = Join-Path $projectRoot '.venv\Scripts\mypy.exe'
+if (-not (Test-Path $mypy)) { throw 'Install dev dependencies with: .\.venv\Scripts\python.exe -m pip install -e ".[dev]"' }
+& $mypy python/reliability_lab
+if ($LASTEXITCODE -ne 0) { throw 'mypy failed' }
 python -m reliability_lab.cli (Join-Path $artifactDirectory 'simulation.csv') --output (Join-Path $artifactDirectory 'summary.json')
+if ($LASTEXITCODE -ne 0) { throw 'Analytics failed' }
 
 

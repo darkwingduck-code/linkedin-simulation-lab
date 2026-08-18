@@ -1,4 +1,4 @@
-﻿# Conversation History
+# Conversation History
 
 이 문서는 프로젝트와 관련된 대화를 시간순으로 요약한다. 대화 원문 전체를 복제하지 않고, 요청·응답·실행 결과·정정 사항을 보존한다. 인증 토큰과 개인 자격 증명은 기록하지 않는다.
 
@@ -82,3 +82,15 @@ Repository: https://github.com/darkwingduck-code/linkedin-simulation-lab
 - LinkedIn 공개 게시 여부처럼 외부 상태는 실제 증거 없이 주장하지 않는다.
 - 대화 기록에는 비밀정보를 넣지 않는다.
 - 학습 주장은 commit, test, benchmark, screenshot 또는 글로 입증한다.
+
+## 10. Level 2 구현
+
+사용자가 다음 단계 진행을 요청해 named C++ CLI, 강한 입력 검증, 확장된 Python 통계, edge-case tests, warning-as-error compiler gate, strict mypy gate와 CSV data contract를 구현했다.
+
+Debug와 Release에서 CTest 4개씩 통과했고 Python unittest 8개와 mypy source 3개가 통과했다. 자동 test case 수는 CTest 4 + Python 8로 12개다. 기존 1,000-run baseline 결과도 유지됐다.
+
+설계상 positional CLI를 제거해 호출 의미를 명확하게 했고, percentile은 작은 표본에서도 결정적으로 동작하는 nearest-rank를 선택했다. CSV는 초기 학습 경계로 유지하되 schema 한계와 pybind11/API/message queue 대안을 문서화했다.
+
+### Level 2 review correction
+
+Pre-push verification found that C++ standard assert is compiled out in Release and that PowerShell ErrorActionPreference alone does not stop on every native executable failure. Tests were changed to explicit runtime checks, and both workflow scripts now validate LASTEXITCODE after each native command. Fresh Debug and Release runs passed afterward.

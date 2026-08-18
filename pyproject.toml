@@ -14,3 +14,11 @@ package-dir = {"" = "python"}
 [tool.setuptools.packages.find]
 where = ["python"]
 
+
+[project.optional-dependencies]
+dev = ["mypy>=1.11"]
+
+[tool.mypy]
+python_version = "3.10"
+strict = true
+files = ["python/reliability_lab"]
