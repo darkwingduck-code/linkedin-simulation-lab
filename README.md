@@ -1,0 +1,51 @@
+# Reliability Simulation Lab
+
+A portfolio-ready toy project connecting a high-performance C++17 Monte Carlo engine with a lightweight Python analytics pipeline.
+
+## Architecture
+
+```text
+CLion / C++ simulator -> artifacts/simulation.csv -> PyCharm / Python analyzer
+                                                        |
+                                                        v
+                                              artifacts/summary.json
+```
+
+The simulator models alternating failure and repair events over a 720-hour operating window. The Python layer calculates mean availability, fifth-percentile availability, and failure statistics.
+
+## Run everything
+
+From PowerShell:
+
+```powershell
+.\scripts\run.ps1
+```
+
+No third-party runtime dependencies are required. You need CMake, a C++17 compiler, and Python 3.10+.
+
+## CLion
+
+Open the repository root as a CMake project. Build `reliability_simulator` or run `reliability_tests`. The executable accepts:
+
+```text
+reliability_simulator [output.csv] [runs] [seed]
+```
+
+## PyCharm
+
+Open the repository root, create a Python 3.10+ interpreter, then mark `python` as a Sources Root. Run:
+
+```powershell
+$env:PYTHONPATH='python'
+python -m reliability_lab.cli artifacts/simulation.csv
+python -m unittest discover -s python/tests -v
+```
+
+## Portfolio talking points
+
+- Clear language boundary through a stable CSV contract
+- Deterministic simulations for reproducible engineering results
+- Separate unit tests for the computational and analytics layers
+- One-command end-to-end workflow suitable for CI
+
+See [LINKEDIN_POST.md](LINKEDIN_POST.md) for a ready-to-edit launch post.

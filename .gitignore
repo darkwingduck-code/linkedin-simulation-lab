@@ -1,0 +1,12 @@
+.idea/
+.venv/
+build/
+cmake-build-*/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+artifacts/*.csv
+artifacts/*.json
+artifacts/*.html
+!artifacts/.gitkeep
+
