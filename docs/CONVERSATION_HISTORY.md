@@ -113,3 +113,8 @@ end-to-end test는 C++ executable을 두 번 실행해 baseline/stressed artifac
 ## 13. Level 4 공개 릴리스
 
 두 번의 GitHub Actions 실행에서 Windows, Linux, sanitizer, clang-tidy, Python package job이 모두 통과했다. 검증된 커밋에 annotated tag 0.4.0을 만들고 Windows 실행 파일, Python wheel, source distribution을 포함한 공개 GitHub Release를 게시했다.
+
+
+## 14. Level 5와 LinkedIn 수동 연결 가이드
+
+사용자는 퇴근 후 혼자 따라 할 수 있는 가이드와 Level 5 진행을 요청했다. Connect apps의 connector와 JetBrains IDE 통합을 분리해 설명하고 LinkedIn Projects의 Add media 링크를 기본 연결 경로로 문서화했다. Level 5에서는 deterministic parallel C++ simulation, Python sensitivity/uncertainty report, 재현 workflow, provenance, trust boundary, engineering recommendation, self-review와 demo/기술 글을 구현했다. LinkedIn 계정에서의 실제 프로필 수정은 사용자가 직접 확인해야 하므로 완료로 표시하지 않았다.

@@ -17,6 +17,7 @@ void print_usage(const char* program) {
               << "  --hours N              Observation window in hours (> 0)\n"
               << "  --failure-rate N       Failures per hour (> 0)\n"
               << "  --repair-rate N        Repairs per hour (> 0)\n"
+              << "  --threads N            Parallel workers (> 0; deterministic output)\n"
               << "  --help                  Show this help\n";
 }
 
@@ -76,6 +77,12 @@ SimulationConfig parse_arguments(int argc, char* argv[], std::string& output, st
             config.failure_rate_per_hour = parse_positive(require_value(index, argc, argv, option), option);
         } else if (option == "--repair-rate") {
             config.repair_rate_per_hour = parse_positive(require_value(index, argc, argv, option), option);
+        } else if (option == "--threads") {
+            const auto threads = parse_unsigned(require_value(index, argc, argv, option), option);
+            if (threads == 0 || threads > 256 || threads > std::numeric_limits<std::size_t>::max()) {
+                throw std::out_of_range("--threads must be between 1 and 256");
+            }
+            config.threads = static_cast<std::size_t>(threads);
         } else {
             throw std::invalid_argument("unknown option: " + option);
         }

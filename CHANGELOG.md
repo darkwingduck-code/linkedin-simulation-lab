@@ -1,6 +1,19 @@
-﻿# Changelog
+# Changelog
 
 All notable changes to this project are documented here.
+
+## [0.5.0] - 2026-08-18
+
+### Added
+
+- Deterministic multi-threaded C++ Monte Carlo execution with exact serial/parallel comparison.
+- Python sensitivity and uncertainty capstone with versioned JSON and dependency-free HTML/SVG.
+- One-command reproduction, technical article, demo script, model limitations, and conditional engineering recommendation.
+- Detailed LinkedIn Projects, Featured, and Contact info integration guide with IDE/connector boundary warnings.
+
+### Changed
+
+- Promoted the portfolio workflow from production engineering to an auditable Level 5 capstone.
 
 ## [0.4.0] - 2026-08-18
 

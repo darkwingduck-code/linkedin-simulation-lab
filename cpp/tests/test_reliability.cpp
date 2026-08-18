@@ -1,4 +1,4 @@
-﻿#include "reliability.hpp"
+#include "reliability.hpp"
 
 #include <cmath>
 #include <iostream>
@@ -51,6 +51,17 @@ int main() {
         require(first.front().availability == second.front().availability, "fixed seed is not deterministic");
         verify_invariants(config);
 
+        auto parallel_config = config;
+        parallel_config.threads = 4;
+        const auto parallel = simulate(parallel_config);
+        require(first.size() == parallel.size(), "parallel result count differs");
+        for (std::size_t index = 0; index < first.size(); ++index) {
+            require(first[index].availability == parallel[index].availability,
+                    "parallel output differs from serial output");
+            require(first[index].failures == parallel[index].failures,
+                    "parallel failure count differs from serial output");
+        }
+
         for (std::uint32_t seed = 0; seed < 50; ++seed) {
             SimulationConfig generated;
             generated.runs = 20 + seed % 7;
@@ -64,6 +75,12 @@ int main() {
         auto invalid = config;
         invalid.runs = 0;
         require_invalid([&invalid] { simulate(invalid); }, "zero runs were accepted");
+        invalid = config;
+        invalid.threads = 0;
+        require_invalid([&invalid] { simulate(invalid); }, "zero threads were accepted");
+        invalid = config;
+        invalid.threads = 257;
+        require_invalid([&invalid] { simulate(invalid); }, "excessive thread count was accepted");
         invalid = config;
         invalid.hours = 0.0;
         require_invalid([&invalid] { simulate(invalid); }, "zero hours were accepted");

@@ -1,4 +1,4 @@
-﻿#include "reliability.hpp"
+#include "reliability.hpp"
 
 #include <filesystem>
 #include <fstream>
@@ -39,7 +39,8 @@ void write_json(
            << "    \"seed\": " << config.seed << ",\n"
            << "    \"hours\": " << config.hours << ",\n"
            << "    \"failure_rate_per_hour\": " << config.failure_rate_per_hour << ",\n"
-           << "    \"repair_rate_per_hour\": " << config.repair_rate_per_hour << "\n"
+           << "    \"repair_rate_per_hour\": " << config.repair_rate_per_hour << ",\n"
+           << "    \"threads\": " << config.threads << "\n"
            << "  },\n"
            << "  \"results\": [\n";
     for (std::size_t index = 0; index < results.size(); ++index) {

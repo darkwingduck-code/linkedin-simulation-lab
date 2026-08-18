@@ -12,6 +12,7 @@ struct SimulationConfig {
     double hours{720.0};
     double failure_rate_per_hour{0.0015};
     double repair_rate_per_hour{0.08};
+    std::size_t threads{1};
 };
 
 struct SimulationResult {

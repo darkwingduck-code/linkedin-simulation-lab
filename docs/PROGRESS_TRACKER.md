@@ -45,17 +45,17 @@
 
 ## Level 5
 
-- [ ] Capstone 문제와 성공 기준
-- [ ] Parameter provenance
-- [ ] 병렬 simulator와 측정된 speedup
-- [ ] Sensitivity/uncertainty analysis
-- [ ] 재현 가능한 실험 workflow
-- [ ] Limitations/trust-boundary 분석
-- [ ] Engineering recommendation
-- [ ] 리뷰 PR 또는 self-review 3회
+- [x] Capstone 문제와 성공 기준
+- [x] Parameter provenance
+- [x] 병렬 simulator와 측정된 speedup
+- [x] Sensitivity/uncertainty analysis
+- [x] 재현 가능한 실험 workflow
+- [x] Limitations/trust-boundary 분석
+- [x] Engineering recommendation
+- [x] 리뷰 PR 또는 self-review 3회
 - [ ] Public release와 reproduction audit
 - [ ] 기술 글, demo, LinkedIn 업데이트
-- [ ] Final retrospective
+- [x] Final retrospective
 
 ## Evidence log
 
@@ -66,3 +66,5 @@
 | 2026-08-18 | L2 | Named CLI, validation, 12 automated tests, warning/type gates, data contract | Level 2 delivery commit |
 | 2026-08-18 | L3 | JSON contract, scenario comparison, HTML/SVG, E2E, benchmark, ADR | Level 3 delivery commit |
 | 2026-08-18 | L4 local | lint, mypy, clang-tidy, packages, invariants, performance/security gates | v0.4.0 candidate |
+
+| 2026-08-18 | L5 local | deterministic 4-thread simulator, 2.39x measured speedup, sensitivity/CI report, self-review and LinkedIn guide | artifacts/capstone/capstone-results.json |

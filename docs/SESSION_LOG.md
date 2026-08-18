@@ -176,3 +176,11 @@ When warning-as-error was expanded to the Release test target, the build reveale
 
 - Published annotated tag and GitHub Release v0.4.0 with the Windows executable, wheel, and source distribution.
 - Release: https://github.com/darkwingduck-code/linkedin-simulation-lab/releases/tag/v0.4.0
+
+## 2026-08-18 — Level 5 capstone implementation
+
+- Added deterministic C++ per-run seeding and bounded parallel workers; 1-thread and 4-thread outputs match exactly.
+- Measured 100,000 runs locally: 0.6768 s serial, 0.2828 s with four workers, 2.39x speedup.
+- Added Python sensitivity scenarios, p05 metrics, 95% mean confidence intervals, JSON/HTML evidence and CI smoke coverage.
+- Added provenance, limitations, recommendation, three self-reviews, retrospective article, demo plan, and a detailed LinkedIn manual integration guide.
+- Kept public v0.5.0 release and the user's LinkedIn profile update unchecked until those external actions actually complete.

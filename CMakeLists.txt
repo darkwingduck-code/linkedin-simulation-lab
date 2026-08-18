@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 3.20)
-project(reliability_simulator VERSION 0.4.0 LANGUAGES CXX)
+project(reliability_simulator VERSION 0.5.0 LANGUAGES CXX)
+
+find_package(Threads REQUIRED)
 
 option(ENABLE_SANITIZERS "Enable AddressSanitizer and UndefinedBehaviorSanitizer" OFF)
 option(ENABLE_CLANG_TIDY "Enable clang-tidy static analysis" OFF)
@@ -27,6 +29,7 @@ endfunction()
 
 add_library(reliability_model cpp/src/reliability.cpp cpp/src/serialization.cpp)
 target_include_directories(reliability_model PUBLIC cpp/include)
+target_link_libraries(reliability_model PUBLIC Threads::Threads)
 configure_reliability_target(reliability_model)
 
 add_executable(reliability_simulator cpp/src/main.cpp)

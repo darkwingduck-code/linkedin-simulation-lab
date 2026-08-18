@@ -50,6 +50,8 @@ jobs:
         run: python -m unittest discover -s python/tests -v
       - name: Performance regression gate
         run: python -m reliability_lab.performance_gate --simulator ${{ matrix.executable }}
+      - name: Level 5 capstone smoke test
+        run: python -m reliability_lab.capstone --simulator ${{ matrix.executable }} --output-dir artifacts/capstone-ci --runs 2000 --threads 2
       - name: Stage C++ release artifact
         run: cmake --install build --prefix release
       - uses: actions/upload-artifact@v7

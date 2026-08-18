@@ -12,3 +12,5 @@ artifacts/*.html
 *.egg-info/
 dist/
 release/
+
+artifacts/capstone/*.csv
