@@ -108,3 +108,8 @@ end-to-end test는 C++ executable을 두 번 실행해 baseline/stressed artifac
 사용자가 계속 진행을 요청했다. Windows/Linux GitHub Actions, ruff, strict mypy, clang-tidy, Linux sanitizers, Python console package, C++ install artifact, randomized invariants, performance gate, security review, incident drill과 v0.4.0 metadata를 구현했다.
 
 로컬에서 lint/type/static analysis, Debug/Release tests, 50,000-run performance gate, wheel/source package와 C++ release binary 생성을 검증했다. wheel에 tests가 실수로 포함되는 문제를 package discovery에서 제외해 수정했다. 이후 GitHub Actions run 32109697342에서 Windows, Linux, sanitizer, clang-tidy, Python packaging의 5개 job이 모두 성공한 것을 확인하고 진행표에 반영했다.
+
+
+## 13. Level 4 공개 릴리스
+
+두 번의 GitHub Actions 실행에서 Windows, Linux, sanitizer, clang-tidy, Python package job이 모두 통과했다. 검증된 커밋에 annotated tag 0.4.0을 만들고 Windows 실행 파일, Python wheel, source distribution을 포함한 공개 GitHub Release를 게시했다.

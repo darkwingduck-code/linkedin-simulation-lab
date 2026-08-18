@@ -173,3 +173,6 @@ When warning-as-error was expanded to the Release test target, the build reveale
 - GitHub Actions run 32109697342 passed on Windows and Linux, including sanitizer,
   clang-tidy, Python packaging, end-to-end tests, and performance gates.
 - CI evidence: https://github.com/darkwingduck-code/linkedin-simulation-lab/actions/runs/32109697342
+
+- Published annotated tag and GitHub Release v0.4.0 with the Windows executable, wheel, and source distribution.
+- Release: https://github.com/darkwingduck-code/linkedin-simulation-lab/releases/tag/v0.4.0

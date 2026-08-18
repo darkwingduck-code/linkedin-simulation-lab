@@ -41,7 +41,7 @@
 - [x] Property/invariant tests
 - [x] Performance regression gate
 - [x] Security/failure-mode 문서
-- [ ] Tagged release와 incident drill
+- [x] Tagged release와 incident drill
 
 ## Level 5
 
