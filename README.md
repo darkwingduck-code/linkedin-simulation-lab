@@ -56,6 +56,7 @@ See [LINKEDIN_POST.md](LINKEDIN_POST.md) for a ready-to-edit launch post.
 
 - [Level 5 roadmap](docs/LEVEL5_ROADMAP.md): C++/CLion과 Python/PyCharm의 5단계 실전 커리큘럼
 - [Level 5 capstone guide](docs/LEVEL5_GUIDE.md): 병렬화, 민감도, 불확실성, 권고 및 재현 감사
+- [Level 1–5 portfolio PDF](docs/portfolio-book/LEVEL1-5_PORTFOLIO_GUIDE.pdf): 단계별 실습·검증·LinkedIn 연결을 조판한 13페이지 가이드
 - [LinkedIn integration guide](docs/LINKEDIN_INTEGRATION_GUIDE.md): 퇴근 후 혼자 따라 하는 Projects/Featured/Contact info 연결 절차
 - [Technical article](docs/TECHNICAL_ARTICLE.md) and [10-minute demo](docs/DEMO_SCRIPT.md)
 - [Progress tracker](docs/PROGRESS_TRACKER.md): 완료 항목과 포트폴리오 증거 기록

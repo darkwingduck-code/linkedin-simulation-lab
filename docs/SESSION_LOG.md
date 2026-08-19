@@ -188,3 +188,9 @@ When warning-as-error was expanded to the Release test target, the build reveale
 - GitHub Actions run 32112289682 passed all five jobs, including the Level 5 capstone smoke test on Windows and Linux.
 - Published annotated tag and public Release v0.5.0 with executable, wheel, sdist, JSON evidence, and HTML report.
 - Release: https://github.com/darkwingduck-code/linkedin-simulation-lab/releases/tag/v0.5.0
+
+## 2026-08-19 — Level 1–5 portfolio book
+
+- Consolidated the Level 1–5 curriculum, IDE exercises, verification gates, safety notes, capstone evidence, and LinkedIn manual connection steps into one Korean guide.
+- Generated editable Markdown, print-styled HTML, and a 13-page A4 PDF under docs/portfolio-book.
+- Verified PDF extraction contains every Level chapter and the LinkedIn/final checklist sections.

@@ -123,3 +123,8 @@ end-to-end test는 C++ executable을 두 번 실행해 baseline/stressed artifac
 ## 15. Level 5 공개 릴리스
 
 GitHub Actions run 32112289682의 Windows, Linux, sanitizer, clang-tidy, Python package job이 모두 성공했다. 검증된 commit 53c2cb3에 0.5.0 annotated tag를 만들고 실행 파일, wheel, source distribution, capstone JSON/HTML을 공개 Release 자산으로 게시했다. 실제 LinkedIn 프로필 연결은 계정 소유자가 가이드에 따라 확인해야 하므로 남은 항목으로 유지했다.
+
+
+## 16. Level 1–5 통합 PDF
+
+사용자는 Level별 내용을 정리해 조판한 PDF와 전용 디렉터리를 요청했다. 기존 Level 1–5 가이드, capstone 근거, 주의사항, LinkedIn 연결 절차를 하나의 한국어 포트폴리오 북으로 재편집하고 Markdown, 인쇄용 HTML, 13페이지 A4 PDF를 docs/portfolio-book에 생성했다.
